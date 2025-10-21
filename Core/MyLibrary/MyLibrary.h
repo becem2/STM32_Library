@@ -1,58 +1,19 @@
-#ifndef MY_LIBRARY_H
-#define MY_LIBRARY_H
+#ifndef MY_SUPER_LIB_H
+#define MY_SUPER_LIB_H
 
-#include "main.h" // For HAL, GPIO definitions
+#include "stm32f4xx.h"
+#include <stdint.h>
 
-/*==============================================================================
- * Function Prototypes
- *============================================================================*/
+void MyLib_SystemClockInit(void);
+void MyLib_PinInit(GPIO_TypeDef *GPIOx, uint8_t pin);
+void MyLib_TogglePin(GPIO_TypeDef *GPIOx, uint8_t pin);
+void MyLib_SetPin(GPIO_TypeDef *GPIOx, uint8_t pin);
+void MyLib_ResetPin(GPIO_TypeDef *GPIOx, uint8_t pin);
+uint8_t MyLib_ReadPin(GPIO_TypeDef *GPIOx, uint8_t pin);
+void MyLib_SwitchPin(GPIO_TypeDef *GPIOx, uint8_t pin);
+void MyLib_Delay_ms(uint32_t ms);
+void MyLib_TimerInit(void);
+uint32_t MyLib_GetTime_ms(void);
+void MyLib_BlinkMorse(GPIO_TypeDef *GPIOx, uint8_t pin, const char *message);
 
-/**
- * @brief  Initialize a GPIO pin for output
- * @param  GPIOx: GPIO port (e.g., GPIOC)
- * @param  GPIO_Pin: GPIO pin (e.g., GPIO_PIN_13)
- * @retval None
- */
-void MyLib_PinInit(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin);
-
-/**
- * @brief  Toggle the state of a GPIO pin
- * @param  GPIOx: GPIO port
- * @param  GPIO_Pin: GPIO pin
- * @retval None
- */
-void MyLib_TogglePin(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin);
-
-/**
- * @brief  Set a GPIO pin HIGH
- * @param  GPIOx: GPIO port
- * @param  GPIO_Pin: GPIO pin
- * @retval None
- */
-void MyLib_SetPin(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin);
-
-/**
- * @brief  Set a GPIO pin LOW
- * @param  GPIOx: GPIO port
- * @param  GPIO_Pin: GPIO pin
- * @retval None
- */
-void MyLib_ResetPin(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin);
-
-/**
- * @brief  Read the state of a GPIO pin
- * @param  GPIOx: GPIO port
- * @param  GPIO_Pin: GPIO pin
- * @retval GPIO_PIN_SET or GPIO_PIN_RESET
- */
-GPIO_PinState MyLib_ReadPin(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin);
-
-/**
- * @brief  Switch pin state (HIGH -> LOW, LOW -> HIGH)
- * @param  GPIOx: GPIO port
- * @param  GPIO_Pin: GPIO pin
- * @retval None
- */
-void MyLib_SwitchPin(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin);
-
-#endif /* MY_LIBRARY_H */
+#endif
